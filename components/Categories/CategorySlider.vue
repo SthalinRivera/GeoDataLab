@@ -1,10 +1,14 @@
 <template>
     <div class="">
-        <h2 v-if="title"
-            class="text-center text-3xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent mb-8">
-            {{ $t("our_categories") }}
-        </h2>
 
+        <div class="flex items-center justify-center mb-1">
+            <div class="flex-1 h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent"></div>
+            <h3
+                class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mx-4 text-center">
+                {{ $t("our_categories") }}
+            </h3>
+            <div class="flex-1 h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent"></div>
+        </div>
 
         <!-- Slider container -->
         <div class="relative group">
@@ -21,7 +25,7 @@
                 :style="{ scrollBehavior: 'smooth' }" @mousedown="startDrag" @mousemove="onDrag" @mouseup="endDrag"
                 @mouseleave="endDrag" @touchstart="startDrag" @touchmove="onDrag" @touchend="endDrag">
                 <div v-for="category in categories" :key="category.id"
-                    class="flex w-full max-w-3xl mx-auto items-center gap-4 p-4 mb-4 rounded-xl bg-slate-100 dark:bg-slate-800 shadow group/card cursor-pointer transition-all hover:shadow-md"
+                    class="flex w-full max-w-3xl mx-auto items-center gap-4 p-4  rounded-xl bg-slate-100 dark:bg-slate-800 shadow group/card cursor-pointer transition-all hover:shadow-md"
                     @click="emit('categoryClick', category)">
 
                     <!-- Imagen -->

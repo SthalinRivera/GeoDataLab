@@ -1,12 +1,16 @@
 <template>
-  <div class="my-6 p-2">
-    <h1
-      class="text-center text-3xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent mb-8">
-      {{ $t("our_projects") }}
-    </h1>
+  <div class="">
 
+    <div class="flex items-center justify-center mb-1">
+      <div class="flex-1 h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent"></div>
+      <h3
+        class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mx-4 text-center">
+        {{ $t("our_projects") }}
+      </h3>
+      <div class="flex-1 h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent"></div>
+    </div>
     <!-- Controles de búsqueda y ordenamiento -->
-    <div class="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6">
+    <div class="flex flex-col sm:flex-row justify-between items-center gap-4 mb-1">
       <!-- Campo de búsqueda -->
       <UInput v-model="searchQuery" placeholder="Buscar proyectos..." icon="i-heroicons-magnifying-glass"
         class="w-full sm:w-64" />

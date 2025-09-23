@@ -162,7 +162,7 @@ const goBack = () => {
           </div>
 
           <div class="flex-1 min-w-0">
-            <h3 class="text-base font-semibold truncate" :class="{
+            <h3 class="text-base font-semibold " :class="{
               'text-gray-800 dark:text-gray-100': resource.free || loggedIn,
               'text-gray-600 dark:text-gray-400': !resource.free && !loggedIn
             }">
@@ -184,7 +184,7 @@ const goBack = () => {
           </div>
 
           <button @click.stop="handleDownload(resource)" class="p-2 rounded-lg transition-colors duration-200 mt-2"
-            :class="{
+            :disabled="!resource.free && !loggedIn" :class="{
               'text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-indigo-600 dark:hover:text-indigo-400': resource.free || loggedIn,
               'text-amber-500 hover:bg-amber-50 dark:hover:bg-amber-900/30 hover:text-amber-600 dark:hover:text-amber-400': !resource.free && !loggedIn
             }">
@@ -249,11 +249,12 @@ const goBack = () => {
 
           <!-- Botones de acción -->
           <div class="space-y-3">
-            <UButton to="/login" color="white" size="lg"
+            <UButton :to="`/login?redirect=${encodeURIComponent(route.fullPath)}`" color="white" size="lg"
               class="justify-center w-full bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white shadow-lg hover:shadow-cyan-500/30 transition-all transform hover:-translate-y-0.5"
               icon="i-heroicons-lock-open" label="Iniciar sesión para desbloquear" @click="showLoginModal = false" />
 
-            <UButton to="/login" color="gray" variant="outline" size="lg"
+            <UButton :to="`/login?redirect=${encodeURIComponent(route.fullPath)}`" color="gray" variant="outline"
+              size="lg"
               class="justify-center w-full border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800/50"
               icon="i-heroicons-user-plus" label="Registrarse gratis" @click="showLoginModal = false" />
           </div>

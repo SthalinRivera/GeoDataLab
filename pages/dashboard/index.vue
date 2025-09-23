@@ -63,16 +63,16 @@ const formatoFecha = (fechaString: string) => new Date(fechaString).toLocaleDate
         </div>
 
         <!-- Carga / Error -->
-        <div v-if="pending" class="flex justify-center items-center h-64">
+        <!-- <div v-if="pending" class="flex justify-center items-center h-64">
             <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500"></div>
         </div>
         <div v-else-if="error" class="bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-300 p-4 rounded-lg">
             <div class="flex items-center">
                 <i class="ri-error-warning-line mr-2"></i>
                 <span>Error al cargar los datos. Por favor, inténtalo de nuevo.</span>
-            </div>
-        </div>
-        <div v-else>
+            </div> -->
+        <!-- </div> -->
+        <div>
             <!-- Tarjetas de Estadísticas -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
                 <!-- Tarjeta de Usuarios -->
@@ -113,79 +113,10 @@ const formatoFecha = (fechaString: string) => new Date(fechaString).toLocaleDate
                 </div>
 
                 <!-- Tarjeta de Productos -->
-                <div
-                    class="bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 p-5 shadow-sm hover:shadow-md transition-shadow">
-                    <div class="flex justify-between">
-                        <div>
-                            <p class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                                Productos</p>
-                            <div class="flex items-end mt-1">
-                                <h3 class="text-2xl font-bold text-green-600 dark:text-green-400">
-                                    {{ formatoNumero(report?.stats?.totalProducts ?? 0) }}
-                                </h3>
-                                <span :class="[
-                                    'text-xs font-medium ml-2 flex items-center pb-1',
-                                    report?.stats?.growth?.products >= 0 ? 'text-green-500' : 'text-red-500'
-                                ]">
-                                    <i :class="[
-                                        'mr-0.5',
-                                        report?.stats?.growth?.products >= 0 ? 'ri-arrow-up-line' : 'ri-arrow-down-line'
-                                    ]"></i>
-                                    {{ Math.abs(report?.stats?.growth?.products ?? 0) }}%
-                                </span>
-                            </div>
-                        </div>
-                        <div
-                            class="h-10 w-10 rounded-lg bg-green-50 dark:bg-green-900/30 flex items-center justify-center text-green-600 dark:text-green-300">
-                            <i class="ri-box-2-line text-lg"></i>
-                        </div>
-                    </div>
-                    <div class="mt-4 flex justify-between items-center">
-                        <a href="/dashboard/products/"
-                            class="text-xs font-medium text-green-600 dark:text-green-400 hover:text-green-800 dark:hover:text-green-200 transition-colors">
-                            Gestionar
-                        </a>
-                        <span class="text-xs text-gray-400">Último añadido</span>
-                    </div>
-                </div>
+
 
                 <!-- Tarjeta de Ventas -->
-                <div
-                    class="bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 p-5 shadow-sm hover:shadow-md transition-shadow">
-                    <div class="flex justify-between">
-                        <div>
-                            <p class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                                Ventas Totales</p>
-                            <div class="flex items-end mt-1">
-                                <h3 class="text-2xl font-bold text-yellow-600 dark:text-yellow-400">
-                                    {{ formatoMoneda(report?.stats?.totalRevenue ?? 0) }}
-                                </h3>
-                                <span :class="[
-                                    'text-xs font-medium ml-2 flex items-center pb-1',
-                                    report?.stats?.growth?.sales >= 0 ? 'text-green-500' : 'text-red-500'
-                                ]">
-                                    <i :class="[
-                                        'mr-0.5',
-                                        report?.stats?.growth?.sales >= 0 ? 'ri-arrow-up-line' : 'ri-arrow-down-line'
-                                    ]"></i>
-                                    {{ Math.abs(report?.stats?.growth?.sales ?? 0) }}%
-                                </span>
-                            </div>
-                        </div>
-                        <div
-                            class="h-10 w-10 rounded-lg bg-yellow-50 dark:bg-yellow-900/30 flex items-center justify-center text-yellow-600 dark:text-yellow-300">
-                            <i class="ri-shopping-bag-line text-lg"></i>
-                        </div>
-                    </div>
-                    <div class="mt-4 flex justify-between items-center">
-                        <a href="/dashboard/sales"
-                            class="text-xs font-medium text-yellow-600 dark:text-yellow-400 hover:text-yellow-800 dark:hover:text-yellow-200 transition-colors">
-                            Ver informe
-                        </a>
-                        <span class="text-xs text-gray-400">Última: {{
-                            formatoMoneda(report?.recentActivity?.orders[0]?.total ?? 0) }}</span>
-                    </div>
-                </div>
+
             </div>
 
             <!-- Sección de Actividad Reciente -->

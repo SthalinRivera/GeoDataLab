@@ -1,20 +1,18 @@
 <template>
     <div class="">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="">
             <!-- Encabezado minimalista con más impacto -->
-            <div class="text-center mb-12">
-
+            <!-- Opción 1: Línea decorativa a ambos lados -->
+            <div class="flex items-center justify-center mb-2">
+                <div class="flex-1 h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent"></div>
                 <h3
-                    class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4 leading-tight">
-                    Servicios Profesionales
+                    class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mx-4 text-center">
+                    {{ $t("our_services") }}
                 </h3>
-                <p class="text-lg text-gray-500 dark:text-gray-400 max-w-2xl mx-auto">
-                    Soluciones profesionales diseñadas para impulsar tu presencia digital
-                </p>
+                <div class="flex-1 h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent"></div>
             </div>
-
             <!-- Grid de servicios más compacto y visual -->
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-2">
                 <!-- Tarjeta de servicio ultra moderna -->
                 <NuxtLink v-for="service in services" :key="service.id" :to="`/services/${service.id}`"
                     class="group relative overflow-hidden rounded-2xl border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer">

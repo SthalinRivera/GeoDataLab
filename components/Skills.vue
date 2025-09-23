@@ -1,9 +1,16 @@
 <template>
-    <div class="relative overflow-hidden py-8 max-w-5xl mx-auto">
+
+    <div class="flex items-center justify-center mb-1">
+        <div class="flex-1 h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent"></div>
         <h3
-            class="text-center text-3xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent mb-8">
-            <span class="inline-block animate-float">🚀</span> {{ $t("tech_stack") }}
+            class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mx-4 text-center">
+            {{ $t("tech_stack") }}
         </h3>
+        <div class="flex-1 h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent"></div>
+    </div>
+
+    <div class="relative overflow-hidden">
+
 
         <div class="relative h-28 flex items-center overflow-hidden">
             <!-- Carrusel infinito fluido -->
