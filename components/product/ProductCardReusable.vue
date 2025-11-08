@@ -36,7 +36,7 @@
                         <li v-for="tech in product.technologies" :key="tech"
                             class="bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-200 px-3 py-1 rounded-full text-[9px]">
                             {{ tech }}
-                        </li>   
+                        </li>
                     </ul>
                 </div>
             </div>

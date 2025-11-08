@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class=" bg-slate-200 dark:bg-slate-900 rounded-xl shadow-lg mt-1 p-2">
 
     <div class="flex items-center justify-center mb-1">
       <div class="flex-1 h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent"></div>

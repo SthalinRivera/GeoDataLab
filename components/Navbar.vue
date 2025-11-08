@@ -3,11 +3,11 @@
         <!-- Barra de navegación principal -->
         <nav
             class=" w-full top-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800 shadow-sm">
-            <div class="max-w-screen-xl flex items-center justify-between mx-auto px-4 py-3">
+            <div class=" max-w-5xl flex items-center justify-between mx-auto px-4 py-3">
                 <!-- Logo -->
                 <NuxtLink to="/" class=" pl-4 md:pl-0 flex items-center gap-2" @click="isMobileMenuOpen = false">
-                    <span class="font-semibold text-xl tracking-tight mr2 text-slate-900 dark:text-slate-200">Sthalin
-                        Rivera</span>
+                    <span class="font-semibold text-xl tracking-tight mr2 text-slate-900 dark:text-slate-200">STALIN
+                        RIVERA</span>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="size-6 text-blue-400 dark:text-blue-300">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -117,6 +117,8 @@
                         </NuxtLink>
 
                     </div>
+
+
                 </div>
             </div>
         </nav>

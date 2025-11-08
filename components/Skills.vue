@@ -1,36 +1,38 @@
 <template>
+    <div class=" bg-slate-200 dark:bg-slate-900 rounded-xl  mt-1">
+        <div class="flex items-center justify-center mb-1">
+            <div class="flex-1 h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent"></div>
+            <h3
+                class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mx-4 text-center">
+                {{ $t("tech_stack") }}
+            </h3>
+            <div class="flex-1 h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent"></div>
+        </div>
 
-    <div class="flex items-center justify-center mb-1">
-        <div class="flex-1 h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent"></div>
-        <h3
-            class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mx-4 text-center">
-            {{ $t("tech_stack") }}
-        </h3>
-        <div class="flex-1 h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent"></div>
-    </div>
-
-    <div class="relative overflow-hidden">
+        <div class="relative overflow-hidden">
 
 
-        <div class="relative h-28 flex items-center overflow-hidden">
-            <!-- Carrusel infinito fluido -->
-            <div class="absolute flex items-center nowrap" :style="{
-                transform: `translateX(${offset}px)`,
-                transition: 'transform 0.5s linear'
-            }">
-                <!-- Duplicamos los elementos para el efecto de bucle continuo -->
-                <div v-for="(skill, index) in [...skills, ...skills]" :key="`${skill.alt}-${index}`"
-                    class="flex-shrink-0 mx-3">
-                    <a :href="skill.href" target="_blank" rel="noreferrer"
-                        class="flex flex-col items-center p-3 rounded-xl dark:bg-white/5 bg-gray-100/70 backdrop-blur-sm border dark:border-gray-700 border-gray-300 hover:border-purple-400 transition-all duration-300">
-                        <img :src="skill.src" :alt="skill.alt" width="40" height="40"
-                            class="transition-transform duration-300 hover:scale-125 dark:brightness-100 brightness-90" />
-                        <span class="text-xs mt-1 dark:text-gray-300 text-gray-600">{{ skill.alt }}</span>
-                    </a>
+            <div class="relative h-28 flex items-center overflow-hidden">
+                <!-- Carrusel infinito fluido -->
+                <div class="absolute flex items-center nowrap" :style="{
+                    transform: `translateX(${offset}px)`,
+                    transition: 'transform 0.5s linear'
+                }">
+                    <!-- Duplicamos los elementos para el efecto de bucle continuo -->
+                    <div v-for="(skill, index) in [...skills, ...skills]" :key="`${skill.alt}-${index}`"
+                        class="flex-shrink-0 mx-3">
+                        <a :href="skill.href" target="_blank" rel="noreferrer"
+                            class="flex flex-col items-center p-3 rounded-xl dark:bg-white/5 bg-gray-100/70 backdrop-blur-sm border dark:border-gray-700 border-gray-300 hover:border-purple-400 transition-all duration-300">
+                            <img :src="skill.src" :alt="skill.alt" width="40" height="40"
+                                class="transition-transform duration-300 hover:scale-125 dark:brightness-100 brightness-90" />
+                            <span class="text-xs mt-1 dark:text-gray-300 text-gray-600">{{ skill.alt }}</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
 </template>
 
 <script setup lang="ts">

@@ -1,5 +1,5 @@
 <template>
-    <div class="">
+    <div class=" bg-slate-200 dark:bg-slate-900 rounded-xl shadow-lg mt-1 p-2">
         <div class="">
             <!-- Encabezado minimalista con más impacto -->
             <!-- Opción 1: Línea decorativa a ambos lados -->
