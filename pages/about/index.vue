@@ -50,6 +50,14 @@ const openCvInNewTab = () => {
 const goBack = () => {
     router.push('/')
 }
+
+
+// 💾 Guardar la URL actual y redirigir al login
+const saveRedirectUrl = (path = '/login') => {
+    localStorage.setItem('redirectAfterLogin', route.fullPath)
+    router.push(`${path}?redirect=${encodeURIComponent(route.fullPath)}`)
+    showLoginModal.value = false
+}
 </script>
 
 <template>
@@ -192,12 +200,13 @@ const goBack = () => {
                         <UButton :to="`/login?redirect=${encodeURIComponent(route.fullPath)}`" color="white" size="lg"
                             class="justify-center w-full bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white shadow-lg hover:shadow-cyan-500/30 transition-all transform hover:-translate-y-0.5"
                             icon="i-heroicons-lock-open" label="Iniciar sesión para ver CV"
-                            @click="showLoginModal = false" />
+                            @click="saveRedirectUrl('/login')" />
 
                         <UButton :to="`/login?redirect=${encodeURIComponent(route.fullPath)}`" color="gray"
                             variant="outline" size="lg"
                             class="justify-center w-full border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800/50"
-                            icon="i-heroicons-user-plus" label="Registrarse gratis" @click="showLoginModal = false" />
+                            icon="i-heroicons-user-plus" label="Registrarse gratis"
+                            @click="saveRedirectUrl('/register')" />
                     </div>
                 </div>
             </div>

@@ -142,8 +142,82 @@
                     <!-- Sección de órdenes recientes -->
                     <div class="bg-white dark:bg-gray-800 shadow rounded-lg p-6">
                         <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-4">Tus órdenes recientes</h3>
+
+                        <!-- Mensaje de redirección -->
+                        <div v-if="redirectPath"
+                            class="mb-6 p-4 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-lg flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                            <div class="flex items-center gap-2">
+                                <UIcon name="i-heroicons-arrow-uturn-left" class="w-5 h-5" />
+                                <span>Estabas viendo una página antes de iniciar sesión.</span>
+                            </div>
+                            <UButton color="primary" size="sm" class="bg-blue-600 hover:bg-blue-700 text-white"
+                                icon="i-heroicons-arrow-right" :label="`Continuar con ${redirectPath}`"
+                                @click="goToPreviousPage" />
+                        </div>
+
+                        <!-- Sección de recursos de tesis -->
+                        <div
+                            class="p-5 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 mb-6 transition-all duration-300 hover:shadow-xl">
+                            <!-- Encabezado compacto -->
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="p-2 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl shadow-md">
+                                        <UIcon name="i-heroicons-academic-cap" class="w-5 h-5 text-white" />
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100">Recursos de Tesis
+                                            Premium</h3>
+                                        <p
+                                            class="text-xs text-blue-600 dark:text-blue-400 font-medium flex items-center gap-1">
+                                            <UIcon name="i-heroicons-lock-open" class="w-3 h-3" />
+                                            Todo desbloqueado por iniciar sesión. ¡Aprovecha al máximo!
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Descripción compacta -->
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-5 px-1">
+                                Herramientas profesionales para redactar, planificar y generar todos los elementos de tu
+                                tesis.
+                            </p>
+
+                            <!-- Botones compactos con efecto moderno -->
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                <!-- Botón 1 -->
+                                <UButton to="/tools/redaccion/recursos-de-tesis"
+                                    class="justify-center w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 group relative overflow-hidden"
+                                    icon="i-heroicons-book-open">
+                                    <span class="relative z-10">Recursos de Tesis</span>
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    </div>
+                                </UButton>
+
+                                <!-- Botón 2 -->
+                                <UButton to="/tools/matriz/matriz-de-consistencia"
+                                    class="justify-center w-full bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 text-white shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 group relative overflow-hidden"
+                                    icon="i-heroicons-table-cells">
+                                    <span class="relative z-10">Matriz de Consistencia</span>
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    </div>
+                                </UButton>
+
+                                <!-- Botón 3 -->
+                                <UButton to="/tools/operacionalizacion/operalizacion-de-variables"
+                                    class="justify-center w-full bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-400 hover:to-green-500 text-white shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 group relative overflow-hidden"
+                                    icon="i-heroicons-variable">
+                                    <span class="relative z-10">Operacionalización</span>
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    </div>
+                                </UButton>
+                            </div>
+                        </div>
+
                         <div class="space-y-4">
-                            <div v-for="order in orders" :key="order.id"
+                            <!-- <div v-for="order in orders" :key="order.id"
                                 class="border border-gray-200 dark:border-gray-700 rounded-lg p-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition">
                                 <div class="flex justify-between items-start mb-2">
                                     <p class="font-medium">Orden #{{ order.id }}</p>
@@ -171,6 +245,8 @@
                                     </div>
                                 </div>
 
+
+
                                 <div
                                     class="flex justify-between items-center mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
                                     <p class="text-sm">Estado:
@@ -184,8 +260,8 @@
                                     </p>
                                     <p class="font-medium">Total: S/.{{ order.total }}</p>
                                 </div>
-                            </div>
-
+                            </div> -->
+                            <!-- 
                             <div v-if="orders.length === 0" class="text-center py-8">
                                 <div
                                     class="mx-auto w-16 h-16 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center mb-4">
@@ -197,7 +273,7 @@
                                 <p class="text-gray-500 dark:text-gray-400 mb-4">Proximamennte mas novedades</p>
                                 <UButton icon="i-heroicons-arrow-right" trailing color="primary" variant="solid"
                                     label="Explorar proyectos" to="/product" />
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -827,6 +903,26 @@ watch(loggedIn, async (newVal) => {
         orders.value = [];
     }
 });
+
+
+
+
+const redirectPath = ref<string | null>(null)
+
+onMounted(() => {
+    const savedPath = localStorage.getItem('redirectAfterLogin')
+    if (savedPath) {
+        redirectPath.value = savedPath
+        // Limpia el storage para no mostrarlo siempre
+        localStorage.removeItem('redirectAfterLogin')
+    }
+})
+
+const goToPreviousPage = () => {
+    if (redirectPath.value) {
+        router.push(redirectPath.value)
+    }
+}
 </script>
 <style scoped>
 /* Transiciones suaves para los modales */

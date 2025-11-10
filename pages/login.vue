@@ -29,18 +29,6 @@
             </div>
             <span class="text-sm font-medium text-gray-700">Continuar con Google</span>
           </button>
-
-          <!-- Separador -->
-          <div class="relative">
-            <div class="absolute inset-0 flex items-center">
-              <div class="w-full border-t border-gray-300"></div>
-            </div>
-            <div class="relative flex justify-center text-sm">
-              <span class="px-2 bg-white text-gray-500">o</span>
-            </div>
-          </div>
-
-
         </div>
 
         <div class="mt-8 text-center text-sm text-gray-500">
@@ -79,14 +67,4 @@ definePageMeta({
 })
 </script>
 
-<style scoped>
-/* Transiciones suaves para los inputs */
-input {
-  transition: all 0.2s ease;
-}
-
-/* Efecto hover más pronunciado para el botón de Google */
-button:hover {
-  transform: translateY(-1px);
-}
-</style>
+<style scoped></style>
