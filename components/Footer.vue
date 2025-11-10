@@ -1,5 +1,5 @@
 <template>
-    <footer class="bg-gradient-to-b from-transparent to-gray-100 dark:to-gray-800 py-12 ">
+    <footer class=" pt-12 z-10 ">
         <div class="container mx-auto px-4">
             <div class="flex flex-col items-center">
                 <!-- Logo y nombre -->
@@ -17,7 +17,7 @@
 
                 <!-- Redes sociales -->
                 <div class="flex space-x-6 mb-8">
-                    <a href="https://github.com/tu-usuario" target="_blank" rel="noopener noreferrer"
+                    <a href="https://github.com/SthalinRivera" target="_blank" rel="noopener noreferrer"
                         class="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors duration-300">
                         <span class="sr-only">GitHub</span>
                         <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -27,8 +27,7 @@
                         </svg>
                     </a>
 
-                    <a href="https://www.linkedin.com/in/adler-stalin-rivera-centeno-43a9792a0/" target="_blank"
-                        rel="noopener noreferrer"
+                    <a href="https://www.linkedin.com/in/sthalin-rivera/" target="_blank" rel="noopener noreferrer"
                         class="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors duration-300">
                         <span class="sr-only">LinkedIn</span>
                         <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -77,12 +76,13 @@
                     </div>
                 </div>
 
-                <!-- Derechos de autor -->
-                <div class="text-center text-sm text-gray-500 dark:text-gray-400">
-                    <p>© 2024 Sthalin Rivera.</p>
-                    <p class="mt-1">Desarrollado con ❤️ y Vue.js</p>
-                </div>
+
             </div>
+        </div>
+        <!-- Derechos de autor -->
+        <div class="text-center text-sm text-gray-500 dark:text-gray-400 bg-slate-100 dark:bg-gray-900 mt-2 py-4">
+            <p>© 2024 Sthalin Rivera.</p>
+            <p class="mt-1">Desarrollado con ❤️ y Vue.js</p>
         </div>
     </footer>
 </template>

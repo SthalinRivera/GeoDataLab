@@ -9,7 +9,7 @@
 
         <div class="grid gap-3 sm:gap-4 md:gap-6 grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 z-10">
             <div v-for="product in favorites" :key="product.id"
-                class="bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-md hover:shadow-xl border border-gray-100 dark:border-slate-700 transition-all duration-300 flex flex-col">
+                class=" rounded-xl overflow-hidden shadow-md hover:shadow-xl border border-gray-100 dark:border-slate-700 transition-all duration-300 flex flex-col">
 
                 <!-- Imagen con botón de favoritos -->
                 <div class="relative group">
@@ -56,7 +56,7 @@
         </div>
 
         <div v-if="favorites.length === 0"
-            class="mt-10 py-16 flex flex-col items-center justify-center text-center bg-white dark:bg-slate-800 rounded-xl shadow-md border border-gray-100 dark:border-slate-700">
+            class="mt-10 py-16 flex flex-col items-center justify-center text-center  rounded-xl shadow-md border border-gray-100 dark:border-slate-700">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="w-16 h-16 text-gray-300 dark:text-gray-600 mb-4">
                 <path stroke-linecap="round" stroke-linejoin="round"

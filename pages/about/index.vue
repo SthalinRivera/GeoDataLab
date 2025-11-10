@@ -6,7 +6,6 @@ const router = useRouter()
 const personalInfo = {
     name: 'ADLER STALIN RIVERA CENTENO',
     title: 'SYSTEMS ENGINEER - JUNIOR CYBERSECURITY ANALYST - DATA ANALYTICS',
-    description: 'Ingeniero de Sistemas colegiado y habilitado, con experiencia en soporte de tecnologías, análisis de bases de datos y desarrollo web. Especializado en Data Analytics, Ciberseguridad y Gestión de Proyectos.',
     email: 'sthalin.11@gmail.com',
     phone: '+51 910985938',
     location: 'San Vicente de Cañete, Lima 17500, Perú',
@@ -70,60 +69,108 @@ const saveRedirectUrl = (path = '/login') => {
         </button>
 
         <!-- Header con información personal -->
-        <div
-            class="mb-8 p-6 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl shadow-xl backdrop-blur-sm bg-opacity-90 border border-white/10">
+        <div class="mb-8 p-6 rounded-2xl shadow-xl backdrop-blur-sm 
+              border border-gray-200/50 dark:border-white/10
+              transition-all duration-300 hover:shadow-2xl">
+
             <div class="flex flex-col md:flex-row items-center gap-6">
-                <!-- Avatar -->
+
+                <!-- Avatar Mejorado -->
                 <div class="relative">
-                    <div
-                        class="w-24 h-24 rounded-full bg-white/10 backdrop-blur-sm border-2 border-white/20 flex items-center justify-center overflow-hidden">
-                        <img v-if="personalInfo.avatar" :src="personalInfo.avatar" :alt="personalInfo.name"
-                            class="w-full h-full object-cover" />
-                        <i v-else class="ri-user-3-line text-3xl text-white"></i>
+                    <div class="relative w-36 h-36 rounded-2xl 
+                    p-1  group hover:scale-105 transition-transform duration-300">
+                        <div class="w-full h-full rounded-2xl bg-white dark:bg-slate-900 p-1">
+                            <div
+                                class="w-full h-full rounded-xl overflow-hidden border-2 border-white dark:border-slate-700 
+                        shadow-inner bg-gradient-to-br from-gray-100 to-gray-200 dark:from-slate-800 dark:to-slate-700">
+                                <img v-if="personalInfo.avatar" :src="personalInfo.avatar" :alt="personalInfo.name"
+                                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                                <div v-else class="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-100 to-purple-100 
+                                dark:from-blue-900/30 dark:to-purple-900/30">
+                                    <i class="ri-user-3-line text-3xl text-blue-600 dark:text-blue-400"></i>
+                                </div>
+                            </div>
+                        </div>
+
+
                     </div>
                 </div>
 
-                <!-- Información personal -->
-                <div class="flex-1 text-center md:text-left">
-                    <h1 class="text-2xl md:text-3xl font-bold text-white">{{ personalInfo.name }}</h1>
-                    <p class="text-indigo-100 text-sm md:text-lg mt-1">{{ personalInfo.title }}</p>
-                    <p class="text-indigo-100 opacity-90 mt-3 max-w-2xl text-sm md:text-base">{{
-                        personalInfo.description }}</p>
+                <!-- Información personal condensada -->
+                <div class="flex-1 text-center md:text-left space-y-3">
+                    <!-- Nombre y título -->
+                    <div class="space-y-1">
+                        <h1 class="text-2xl md:text-2xl font-bold bg-gradient-to-r from-gray-900 to-blue-800 
+                     dark:from-white dark:to-blue-400 bg-clip-text text-transparent">
+                            {{ personalInfo.name }}
+                        </h1>
+                        <p class="text-blue-600 dark:text-blue-400 font-semibold text-sm">
+                            {{ personalInfo.title }}
+                        </p>
+                    </div>
 
-                    <!-- Información de contacto -->
-                    <div class="flex flex-col sm:flex-row flex-wrap gap-3 mt-4 justify-center md:justify-start">
-                        <div class="flex items-center text-indigo-100">
-                            <i class="ri-mail-line mr-2"></i>
-                            <span class="text-sm">{{ personalInfo.email }}</span>
+                    <!-- Información de contacto compacta -->
+                    <div class="flex flex-wrap gap-4 justify-center md:justify-start">
+                        <div class="flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400 
+                      hover:text-blue-600 dark:hover:text-blue-400 transition-colors cursor-pointer">
+                            <i class="ri-mail-line text-base"></i>
+                            <span class="hidden sm:inline">{{ personalInfo.email }}</span>
                         </div>
-                        <div class="flex items-center text-indigo-100">
-                            <i class="ri-phone-line mr-2"></i>
-                            <span class="text-sm">{{ personalInfo.phone }}</span>
+                        <div class="flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400 
+                      hover:text-green-600 dark:hover:text-green-400 transition-colors cursor-pointer">
+                            <i class="ri-phone-line text-base"></i>
+                            <span class="hidden sm:inline">{{ personalInfo.phone }}</span>
                         </div>
-                        <div class="flex items-center text-indigo-100">
-                            <i class="ri-map-pin-line mr-2"></i>
-                            <span class="text-sm">{{ personalInfo.location }}</span>
+                        <div class="flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400 
+                      hover:text-purple-600 dark:hover:text-purple-400 transition-colors cursor-pointer">
+                            <i class="ri-map-pin-line text-base"></i>
+                            <span class="hidden sm:inline">{{ personalInfo.location }}</span>
                         </div>
-                        <div class="flex items-center text-indigo-100">
-                            <i class="ri-global-line mr-2"></i>
-                            <span class="text-sm">{{ personalInfo.website }}</span>
+                        <div class="flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400 
+                      hover:text-orange-600 dark:hover:text-orange-400 transition-colors cursor-pointer">
+                            <i class="ri-global-line text-base"></i>
+                            <span class="hidden sm:inline">{{ personalInfo.website }}</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Botón de CV -->
-                <div class="flex flex-col items-center">
-                    <UButton @click="handleCvAccess" size="lg"
-                        class="bg-white text-indigo-600 hover:bg-indigo-50 font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5"
+                <!-- Botón de CV mejorado -->
+
+                <div>
+                    <UButton @click="handleCvAccess" size="lg" class="bg-gradient-to-r from-blue-500 to-cyan-600 hover:from-blue-600 hover:to-cyan-700
+         text-white dark:from-blue-600 dark:to-cyan-700 dark:hover:from-blue-700 dark:hover:to-cyan-800"
                         :icon="loggedIn ? 'i-heroicons-document-arrow-down' : 'i-heroicons-lock-closed'"
                         :label="loggedIn ? 'Ver CV' : 'Desbloquear CV'" />
+                </div>
+            </div>
+
+            <!-- Información de contacto expandida al hover (opcional) -->
+            <div class=" border-t border-gray-200/50 dark:border-white/10 
+                opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div class="flex flex-wrap gap-6 justify-center text-sm text-gray-600 dark:text-gray-400">
+                    <div class="flex items-center gap-2">
+                        <i class="ri-mail-line"></i>
+                        <span>{{ personalInfo.email }}</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="ri-phone-line"></i>
+                        <span>{{ personalInfo.phone }}</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="ri-map-pin-line"></i>
+                        <span>{{ personalInfo.location }}</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="ri-global-line"></i>
+                        <span>{{ personalInfo.website }}</span>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- Sección de resumen profesional -->
         <div
-            class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 mb-6">
+            class="bg-slate-100/50 dark:bg-gray-900/50 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 mb-6">
             <div class="flex items-center gap-3 mb-6">
                 <div class="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
                     <i class="ri-profile-line text-blue-600 dark:text-blue-400 text-xl"></i>
@@ -262,6 +309,27 @@ const saveRedirectUrl = (path = '/login') => {
     </div>
 </template>
 
+
 <style scoped>
-/* Estilos para mejorar la visualización del PDF */
+.line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Animación personalizada para el brillo del botón */
+@keyframes shine {
+    0% {
+        transform: translateX(-100%) skewX(-12deg);
+    }
+
+    100% {
+        transform: translateX(200%) skewX(-12deg);
+    }
+}
+
+.group:hover .group-hover\:translate-x-\[100\%\] {
+    animation: shine 1.5s ease-in-out;
+}
 </style>

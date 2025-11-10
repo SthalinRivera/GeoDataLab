@@ -1,5 +1,5 @@
 <template>
-    <div class=" flex items-center justify-center px-4 py-8  bg-slate-200 dark:bg-slate-900 rounded-xl  mt-1">
+    <div class=" flex items-center justify-center px-4 py-8  bg-slate-100/50 dark:bg-gray-900/50 rounded-xl  mt-1">
         <div class="w-full max-w-6xl mx-auto">
             <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
@@ -62,13 +62,14 @@
                 </div>
 
                 <!-- Columna derecha - Foto -->
-                <div class="order-1 lg:order-2  justify-center lg:justify-end">
+                <!-- Columna derecha - Foto -->
+                <div class="order-1 lg:order-2 flex justify-center lg:justify-end">
 
                     <!-- Columna derecha - Foto con tecnologías flotantes -->
-                    <div class=" ">
+                    <div class="flex flex-col items-center">
                         <div class="relative">
                             <!-- Contenedor principal de la galaxia -->
-                            <div class="galaxy-container relative w-80 h-80 md:w-96 md:h-96">
+                            <div class="galaxy-container relative w-80 h-80 md:w-96 md:h-96 mx-auto">
 
                                 <!-- Órbitas circulares -->
                                 <div class="absolute inset-0">
@@ -85,12 +86,12 @@
                                 </div>
 
                                 <!-- Tecnologías flotantes -->
+                                <!-- Tecnologías flotantes - Tamaños responsive -->
                                 <div v-for="(tech, index) in technologies" :key="index"
                                     :class="`tech-icon tech-${index + 1}`"
-                                    class="absolute w-12 h-12 rounded-full bg-white dark:bg-gray-800 shadow-lg flex items-center justify-center transform-gpu">
-                                    <img :src="tech.icon" :alt="tech.name" class="w-8 h-8 object-contain">
+                                    class="absolute w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white dark:bg-gray-800 shadow-lg flex items-center justify-center transform-gpu border border-gray-200 dark:border-gray-700">
+                                    <img :src="tech.icon" :alt="tech.name" class="w-6 h-6 sm:w-8 sm:h-8 object-contain">
                                 </div>
-
                                 <!-- Foto central circular -->
                                 <div class="absolute inset-0 flex items-center justify-center">
                                     <div class="relative">
@@ -117,32 +118,38 @@
                                 </div>
 
                                 <!-- Punto central -->
-                                <div
-                                    class="absolute top-1/2 left-1/2 w-2 h-2 bg-yellow-400 rounded-full -translate-x-1/2 -translate-y-1/2 z-20 shadow-lg shadow-yellow-400/50">
-                                </div>
+
                             </div>
                         </div>
-                    </div>
-                    <div class="flex flex-wrap gap-4 pt-4">
-                        <NuxtLink to="/about" class="btn-primary">
-                            <span>Más sobre mi</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
-                                fill="currentColor">
-                                <path fill-rule="evenodd"
-                                    d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </NuxtLink>
 
-                        <a href="https://wa.me/51910985938?text=Hola,%20quiero%20más%20información%20sobre%20tu%20trabajo"
-                            target="_blank" rel="noopener noreferrer" class="btn-secondary">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24"
-                                fill="currentColor">
-                                <path
-                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893-.001-3.189-1.262-6.188-3.55-8.439z" />
-                            </svg>
-                            <span>WhatsApp</span>
-                        </a>
+                        <!-- Botones -->
+                        <div class="flex flex-wrap gap-4 pt-4 justify-center">
+                            <!-- Botón "Más sobre mi" -->
+                            <NuxtLink to="/about"
+                                class="group inline-flex items-center justify-center gap-2 bg-white dark:bg-gray-800 text-gray-800 dark:text-white hover:text-blue-600 dark:hover:text-cyan-400 font-medium px-6 py-3 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-cyan-600 transition-all duration-300 transform hover:-translate-y-0.5 shadow-sm hover:shadow-md">
+                                <span>Más sobre mi</span>
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    class="h-5 w-5 transform transition-transform duration-300 group-hover:translate-x-1"
+                                    viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </NuxtLink>
+
+                            <!-- Botón WhatsApp mejorado -->
+                            <a href="https://wa.me/51910985938?text=Hola,%20quiero%20más%20información%20sobre%20tu%20trabajo"
+                                target="_blank" rel="noopener noreferrer"
+                                class="group inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700 text-white font-medium px-6 py-3 rounded-lg border border-green-500 dark:border-green-600 transition-all duration-300 transform hover:-translate-y-0.5 shadow-sm hover:shadow-md">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    class="h-5 w-5 transform transition-transform duration-300 group-hover:scale-110"
+                                    viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893-.001-3.189-1.262-6.188-3.55-8.439z" />
+                                </svg>
+                                <span>WhatsApp</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -227,13 +234,7 @@ const technologies = [
     }
 }
 
-.btn-primary {
-    @apply flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105;
-}
 
-.btn-secondary {
-    @apply flex items-center gap-2 px-6 py-3 rounded-xl bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105;
-}
 
 .stat-card {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -549,15 +550,9 @@ const technologies = [
         height: 160px;
     }
 
-    .tech-icon {
-        width: 10px;
-        height: 10px;
-    }
 
-    .tech-icon img {
-        width: 6px;
-        height: 6px;
-    }
+
+
 }
 
 /* Efectos de brillo en hover del contenedor */
