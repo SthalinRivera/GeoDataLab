@@ -8,7 +8,7 @@
       <!-- Card izquierda -->
 
       <!-- Card izquierda con animaciones y efectos mejorados -->
-      <Publicidad />
+      <!-- <Publicidad /> -->
 
 
 

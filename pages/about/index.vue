@@ -179,21 +179,13 @@ const saveRedirectUrl = (path = '/login') => {
             </div>
 
             <div class="text-gray-600 dark:text-gray-300 space-y-4">
-                <p>
-                    Ingeniero de Sistemas colegiado y habilitado, con experiencia en soporte de tecnologías, análisis de
-                    bases de datos y
-                    desarrollo web. He sido <strong>Jefe de Prácticas de Ingeniería de Sistemas</strong> y participé en
-                    el diseño e implementación de sistemas
-                    web, gestores de contenidos y facturación electrónica.
-                </p>
-                <p>
-                    Cuento con <strong>Diplomado en Data Analytics con Power BI</strong>, especialización en
-                    <strong>Gestión de Proyectos y Data Analytics de Google</strong>,
-                    además de formación como <strong>analista Junior de Ciberseguridad</strong>, lo que me permite
-                    integrar la innovación tecnológica con un enfoque
-                    estratégico y seguro.
+                <p>Ingeniero de Sistemas colegiado y habilitado, con experiencia en soporte tecnológico, análisis de
+                    datos y desarrollo de software. Cuento con formación en Data Analytics con Power BI, Gestión de
+                    Proyectos, Data Analytics Advanced de Google y Ciberseguridad (Analista Junior). Además, poseo
+                    certificaciones en Data Platform y Data Science otorgadas por Oracle.
                 </p>
             </div>
+
 
             <!-- Especialidades destacadas -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">

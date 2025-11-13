@@ -39,6 +39,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 
 const skills = ref([
+    // --- Desarrollo y Cloud ---
     { href: 'https://aws.amazon.com', src: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg', alt: 'AWS' },
     { href: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript', src: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg', alt: 'JavaScript' },
     { href: 'https://www.typescriptlang.org/', src: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg', alt: 'TypeScript' },
@@ -49,7 +50,22 @@ const skills = ref([
     { href: 'https://www.mongodb.com/', src: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original-wordmark.svg', alt: 'MongoDB' },
     { href: 'https://www.postgresql.org', src: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original-wordmark.svg', alt: 'PostgreSQL' },
     { href: 'https://www.docker.com/', src: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original-wordmark.svg', alt: 'Docker' },
+
+    // --- Ciberseguridad ---
+    { href: 'https://www.kali.org/', src: 'https://upload.wikimedia.org/wikipedia/commons/2/2b/Kali-dragon-icon.svg', alt: 'Kali Linux' },
+    { href: 'https://www.metasploit.com/', src: 'https://avatars.githubusercontent.com/u/2630918?s=200&v=4', alt: 'Metasploit' },
+    { href: 'https://nmap.org/', src: 'https://nmap.org/images/nmap-logo-256x256.png', alt: 'Nmap' },
+    { href: 'https://owasp.org/', src: 'https://owasp.org/assets/images/logo.png', alt: 'OWASP' },
+    // --- Análisis de Datos / Data Science ---
+    { href: 'https://www.python.org/', src: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg', alt: 'Python' },
+    { href: 'https://pandas.pydata.org/', src: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/pandas/pandas-original.svg', alt: 'Pandas' },
+    { href: 'https://numpy.org/', src: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/numpy/numpy-original.svg', alt: 'NumPy' },
+    { href: 'https://scikit-learn.org/', src: 'https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg', alt: 'Scikit-Learn' },
+    { href: 'https://www.tensorflow.org/', src: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/tensorflow/tensorflow-original.svg', alt: 'TensorFlow' },
+    { href: 'https://www.tableau.com/', src: 'https://upload.wikimedia.org/wikipedia/commons/4/4b/Tableau_Logo.png', alt: 'Tableau' },
+    { href: 'https://powerbi.microsoft.com/', src: 'https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg', alt: 'Power BI' }
 ]);
+
 
 const offset = ref(0);
 const containerWidth = ref(0);

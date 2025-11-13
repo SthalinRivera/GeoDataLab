@@ -49,12 +49,15 @@
 
                     <!-- Enlaces de navegación -->
                     <div
-                        class="flex flex-col lg:flex-row items-center lg:items-stretch w-full lg:w-auto space-y-3 lg:space-y-0 lg:space-x-6 px-4 lg:px-0">
+                        class="flex flex-col lg:flex-row items-center lg:items-stretch w-full lg:w-auto space-y-3 lg:space-y-0 lg:space-x-6 px-2 lg:px-0">
                         <div v-for="ruta in rutasSistemas()" :key="ruta.name" class="w-full lg:w-auto">
                             <template v-if="ruta && (!ruta.permiso || ruta.permiso === user?.permiso)">
-                                <NuxtLink :to="ruta.path"
-                                    class="block py-2 px-4 w-full text-center lg:text-left text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800 rounded-md transition-colors lg:hover:bg-transparent"
-                                    @click="isMobileMenuOpen = false">
+                                <NuxtLink :to="ruta.path" :class="[
+                                    'block py-2 px-2 w-full text-center lg:text-left rounded-md transition-colors lg:hover:bg-transparent',
+                                    isActiveRoute(ruta.path)
+                                        ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20 font-medium'
+                                        : 'text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800'
+                                ]" @click="isMobileMenuOpen = false">
                                     {{ ruta.name }}
                                 </NuxtLink>
                             </template>
@@ -130,7 +133,7 @@
 
 <script setup lang="ts">
 import rutasSistemas from '~/utils/rutasSistemas';
-
+const route = useRoute();
 const { locale } = useI18n();
 const isCartOpen = ref(false);
 const isMobileMenuOpen = ref(false);
@@ -184,6 +187,21 @@ const vClickOutside = {
     unmounted(el: HTMLElement) {
         document.body.removeEventListener('click', el.clickOutsideEvent);
     }
+};
+
+// Función para verificar si la ruta está activa
+const isActiveRoute = (path: string) => {
+    // Para rutas exactas
+    if (route.path === path) {
+        return true;
+    }
+
+    // Para rutas que empiecen con el path (para sub-rutas)
+    if (path !== '/' && route.path.startsWith(path)) {
+        return true;
+    }
+
+    return false;
 };
 </script>
 

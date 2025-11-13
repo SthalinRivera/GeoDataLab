@@ -84,7 +84,7 @@
         </main>
 
         <!-- Floating cart button -->
-        <FloatingCartButton class="fixed bottom-6 right-6 z-40" />
+        <FloatingCartButton class="fixed bottom-6 right-6 z-50" />
 
         <!-- Footer -->
         <Footer />

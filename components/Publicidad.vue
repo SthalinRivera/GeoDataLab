@@ -1,6 +1,6 @@
 <template>
     <!-- Card izquierda con animaciones mejoradas y textos llamativos -->
-    <div class="pointer-events-auto fixed left-8 top-40 -translate-y-1/2 z-30 
+    <div v-if="showCard" class="pointer-events-auto fixed left-8 top-1/2 -translate-y-1/2 z-50
       bg-white/80 dark:bg-slate-900/80
       backdrop-blur-lg border border-gray-200/50 dark:border-slate-700/50
       shadow-2xl rounded-2xl p-6 w-80
@@ -8,6 +8,21 @@
       transition-all duration-500 ease-out
       group
       animate-float">
+
+        <!-- Botón de cerrar -->
+        <button @click="closeCard" class="absolute -top-2 -right-2 w-8 h-8 bg-red-500 hover:bg-red-600 
+          text-white rounded-full flex items-center justify-center shadow-lg 
+          transition-all duration-300 hover:scale-110 z-40">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+
+        <!-- Barra de progreso -->
+        <div class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full mb-4 overflow-hidden">
+            <div class="h-full bg-gradient-to-r from-blue-500 to-purple-600 rounded-full transition-all duration-1000 ease-linear"
+                :style="{ width: progress + '%' }"></div>
+        </div>
 
         <!-- Header con animación mejorada -->
         <div class="flex items-center gap-3 mb-5 pb-4 border-b border-gray-200/60 dark:border-slate-700/60">
@@ -39,11 +54,7 @@
                     & Análisis de Datos
                 </h4>
             </div>
-
-
         </div>
-
-
 
         <!-- Llamada a la acción animada -->
         <div
@@ -126,9 +137,162 @@
                 </svg>
             </a>
         </div>
-
-
     </div>
 </template>
 
-<style scoped></style>
+<script>
+export default {
+    data() {
+        return {
+            showCard: false,
+            progress: 100,
+            autoCloseTimer: null,
+            progressInterval: null,
+            reappearTimer: null,
+            userClosed: false
+        }
+    },
+    mounted() {
+        // Mostrar el card después de 2 segundos
+        setTimeout(() => {
+            if (!this.userClosed) {
+                this.showCard = true;
+                this.startAutoClose();
+            }
+        }, 2000);
+    },
+    methods: {
+        startAutoClose() {
+            // Reiniciar progreso
+            this.progress = 100;
+
+            // Limpiar timers anteriores si existen
+            if (this.autoCloseTimer) clearTimeout(this.autoCloseTimer);
+            if (this.progressInterval) clearInterval(this.progressInterval);
+
+            // Configurar el cierre automático después de 10 segundos
+            this.autoCloseTimer = setTimeout(() => {
+                this.closeCard();
+            }, 10000);
+
+            // Actualizar la barra de progreso cada 100ms
+            this.progressInterval = setInterval(() => {
+                this.progress -= 1;
+                if (this.progress <= 0) {
+                    clearInterval(this.progressInterval);
+                }
+            }, 100);
+        },
+        closeCard() {
+            this.showCard = false;
+            this.userClosed = true;
+
+            // Limpiar timers
+            if (this.autoCloseTimer) clearTimeout(this.autoCloseTimer);
+            if (this.progressInterval) clearInterval(this.progressInterval);
+
+            // Programar la reaparición después de 5 segundos
+            this.reappearTimer = setTimeout(() => {
+                this.userClosed = false;
+                this.showCard = true;
+                this.startAutoClose();
+            }, 5000);
+        }
+    },
+    beforeUnmount() {
+        // Limpiar todos los timers al desmontar el componente
+        if (this.autoCloseTimer) clearTimeout(this.autoCloseTimer);
+        if (this.progressInterval) clearInterval(this.progressInterval);
+        if (this.reappearTimer) clearTimeout(this.reappearTimer);
+    }
+}
+</script>
+
+<style scoped>
+/* Animación de flotación */
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(-50%) translateX(0);
+    }
+
+    50% {
+        transform: translateY(-50%) translateX(-10px);
+    }
+}
+
+/* Animación de deslizamiento */
+.animate-slide-in-left {
+    animation: slideInLeft 0.5s ease-out;
+}
+
+.animate-slide-in-right {
+    animation: slideInRight 0.5s ease-out;
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Animación de gradiente */
+.animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient 3s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Animación de pulso lento */
+.animate-pulse-slow {
+    animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+}
+</style>
