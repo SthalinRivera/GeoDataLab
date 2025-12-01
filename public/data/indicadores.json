@@ -1,0 +1,114 @@
+[
+    {
+        "distrito": "ASIA",
+        "poblacion": 12300,
+        "inseguridad": 0.42,
+        "contaminacion": 0.31,
+        "ruido": 0.21
+    },
+    {
+        "distrito": "CALANGO",
+        "poblacion": 3200,
+        "inseguridad": 0.18,
+        "contaminacion": 0.12,
+        "ruido": 0.08
+    },
+    {
+        "distrito": "CERRO AZUL",
+        "poblacion": 10200,
+        "inseguridad": 0.36,
+        "contaminacion": 0.28,
+        "ruido": 0.22
+    },
+    {
+        "distrito": "CHILCA",
+        "poblacion": 23400,
+        "inseguridad": 0.55,
+        "contaminacion": 0.62,
+        "ruido": 0.51
+    },
+    {
+        "distrito": "COAYLLO",
+        "poblacion": 4100,
+        "inseguridad": 0.22,
+        "contaminacion": 0.17,
+        "ruido": 0.12
+    },
+    {
+        "distrito": "IMPERIAL",
+        "poblacion": 48500,
+        "inseguridad": 0.71,
+        "contaminacion": 0.49,
+        "ruido": 0.63
+    },
+    {
+        "distrito": "LUNAHUANA",
+        "poblacion": 5400,
+        "inseguridad": 0.25,
+        "contaminacion": 0.19,
+        "ruido": 0.15
+    },
+    {
+        "distrito": "MALA",
+        "poblacion": 38000,
+        "inseguridad": 0.68,
+        "contaminacion": 0.52,
+        "ruido": 0.57
+    },
+    {
+        "distrito": "NUEVO IMPERIAL",
+        "poblacion": 28700,
+        "inseguridad": 0.59,
+        "contaminacion": 0.41,
+        "ruido": 0.48
+    },
+    {
+        "distrito": "PACARAN",
+        "poblacion": 2900,
+        "inseguridad": 0.12,
+        "contaminacion": 0.09,
+        "ruido": 0.06
+    },
+    {
+        "distrito": "QUILMANA",
+        "poblacion": 21500,
+        "inseguridad": 0.48,
+        "contaminacion": 0.37,
+        "ruido": 0.29
+    },
+    {
+        "distrito": "SAN ANTONIO",
+        "poblacion": 7200,
+        "inseguridad": 0.33,
+        "contaminacion": 0.22,
+        "ruido": 0.19
+    },
+    {
+        "distrito": "SAN LUIS",
+        "poblacion": 12600,
+        "inseguridad": 0.45,
+        "contaminacion": 0.26,
+        "ruido": 0.31
+    },
+    {
+        "distrito": "SAN VICENTE DE CAÑETE",
+        "poblacion": 58500,
+        "inseguridad": 0.74,
+        "contaminacion": 0.55,
+        "ruido": 0.68
+    },
+    {
+        "distrito": "SANTA CRUZ DE FLORES",
+        "poblacion": 3900,
+        "inseguridad": 0.21,
+        "contaminacion": 0.14,
+        "ruido": 0.12
+    },
+    {
+        "distrito": "ZUÑIGA",
+        "poblacion": 4800,
+        "inseguridad": 0.27,
+        "contaminacion": 0.20,
+        "ruido": 0.17
+    }
+]

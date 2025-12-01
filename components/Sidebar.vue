@@ -214,17 +214,6 @@ const menuItems = [
         title: 'Dashboard',
         icon: 'heroicons:chart-bar'
     },
-    {
-        to: '/product',
-        title: 'Ver Tienda',
-        icon: 'heroicons:building-storefront'
-    },
-    {
-        to: '/dashboard/order-history',
-        title: 'Historial de Pedidos',
-        icon: 'heroicons:shopping-bag',
-        badge: 'new'
-    },
 
     {
         to: '/dashboard/productss',
@@ -247,7 +236,8 @@ const menuItems = [
                 title: 'Promociones',
                 icon: 'heroicons:sparkles',
                 badge: 'pro'
-            }
+            },
+
         ]
     },
     {
@@ -257,7 +247,13 @@ const menuItems = [
     },
     {
         to: '/dashboard/sales',
-        title: 'Reportes de Ventas',
+        title: 'Reportes de Basura',
+        icon: 'heroicons:banknotes',
+        badge: 'pro'
+    },
+    {
+        to: '/dashboard/incident',
+        title: 'Reportes de Inseguridad',
         icon: 'heroicons:banknotes',
         badge: 'pro'
     },

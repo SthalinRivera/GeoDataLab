@@ -1,3 +1,4 @@
+// composables/useFirebaseUpload.ts
 import { ref } from 'vue';
 import { getDownloadURL, ref as storageRef, uploadBytesResumable } from 'firebase/storage';
 import { useNuxtApp } from '#app';
@@ -5,7 +6,7 @@ import { useNuxtApp } from '#app';
 // Tamaño estándar para todas las imágenes
 const STANDARD_WIDTH = 1200;
 const STANDARD_HEIGHT = 800;
-const WEBP_QUALITY = 0.85; // 85% calidad (balance entre tamaño y calidad)
+const WEBP_QUALITY = 0.85;
 
 export function useFirebaseUpload() {
   const uploadProgress = ref(0);
@@ -37,21 +38,20 @@ export function useFirebaseUpload() {
             width = height * aspectRatio;
           }
 
-          // Crear un canvas para redimensionar
           const canvas = document.createElement('canvas');
           canvas.width = width;
           canvas.height = height;
 
-          // Dibujar la imagen redimensionada
           const ctx = canvas.getContext('2d');
           if (!ctx) {
             reject(new Error('No se pudo crear el contexto del canvas'));
             return;
           }
 
+          // Configurar calidad de renderizado
+          ctx.imageSmoothingQuality = 'high';
           ctx.drawImage(img, 0, 0, width, height);
 
-          // Convertir a WebP
           canvas.toBlob(
             (blob) => {
               if (blob) {
@@ -86,57 +86,103 @@ export function useFirebaseUpload() {
 
   /**
    * Sube una imagen a Firebase Storage
-   * La imagen será convertida a WebP y redimensionada
    */
-  const uploadImage = async (file: File) => {
+  const uploadImage = async (file: File, folder: string = 'garbage-reports'): Promise<string> => {
     try {
       isUploading.value = true;
       uploadProgress.value = 0;
 
-      // Obtener la extensión del archivo original
+      // Generar nombre único para el archivo
+      const timestamp = Date.now();
+      const randomString = Math.random().toString(36).substring(2, 15);
       const originalName = file.name.split('.').slice(0, -1).join('.');
-      const newFileName = `${originalName}_${Date.now()}.webp`;
+      const newFileName = `${originalName}_${timestamp}_${randomString}.webp`;
 
       // Convertir a WebP y redimensionar
       const webpBlob = await convertToWebP(file);
 
       // Crear referencia en Firebase Storage
-      const fileRef = storageRef($storage, `test/${newFileName}`);
+      const fileRef = storageRef($storage, `${folder}/${newFileName}`);
+
+      // Metadata para optimización
+      const metadata = {
+        contentType: 'image/webp',
+        customMetadata: {
+          originalName: file.name,
+          convertedAt: new Date().toISOString(),
+          quality: WEBP_QUALITY.toString(),
+          dimensions: `${STANDARD_WIDTH}x${STANDARD_HEIGHT}`
+        }
+      };
 
       // Iniciar la subida
-      const uploadTask = uploadBytesResumable(fileRef, webpBlob);
+      const uploadTask = uploadBytesResumable(fileRef, webpBlob, metadata);
 
       return new Promise<string>((resolve, reject) => {
         uploadTask.on(
           'state_changed',
           (snapshot) => {
-            // Actualizar el progreso y redondearlo a entero
             const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
             uploadProgress.value = Math.round(progress);
           },
           (error) => {
             isUploading.value = false;
-            reject(error);
+            console.error('❌ Error subiendo imagen:', error);
+            reject(new Error(`Error al subir imagen: ${error.message}`));
           },
           async () => {
-            const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-            isUploading.value = false;
-            resolve(downloadURL);
+            try {
+              const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+              isUploading.value = false;
+              console.log('✅ Imagen subida exitosamente:', downloadURL);
+              resolve(downloadURL);
+            } catch (error) {
+              isUploading.value = false;
+              console.error('❌ Error obteniendo URL:', error);
+              reject(new Error('Error al obtener URL de descarga'));
+            }
           }
         );
       });
     } catch (error) {
       isUploading.value = false;
+      console.error('❌ Error en uploadImage:', error);
       throw error;
     }
   };
 
   /**
-   * Sube múltiples imágenes a la vez
+   * Sube múltiples imágenes a la vez con progreso global
    */
-  const uploadMultipleImages = async (files: File[]) => {
-    const uploadPromises = files.map(file => uploadImage(file));
-    return Promise.all(uploadPromises);
+  const uploadMultipleImages = async (files: File[], folder: string = 'garbage-reports') => {
+    isUploading.value = true;
+    uploadProgress.value = 0;
+
+    try {
+      const totalFiles = files.length;
+      let completedFiles = 0;
+      const results: string[] = [];
+
+      for (const file of files) {
+        try {
+          const url = await uploadImage(file, folder);
+          results.push(url);
+          completedFiles++;
+          // Actualizar progreso global
+          uploadProgress.value = Math.round((completedFiles / totalFiles) * 100);
+        } catch (error) {
+          console.error(`❌ Error subiendo archivo ${file.name}:`, error);
+          // Continuar con los demás archivos
+          continue;
+        }
+      }
+
+      isUploading.value = false;
+      return results;
+    } catch (error) {
+      isUploading.value = false;
+      throw error;
+    }
   };
 
   return {

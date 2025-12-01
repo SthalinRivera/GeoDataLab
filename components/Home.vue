@@ -23,10 +23,7 @@
 
     <!-- Contenido principal -->
     <HomeInit />
-    <Skills />
-    <Services />
-    <Categories />
-    <ProductCardProductsHome />
+    <HomeInit2 />
     <WhatsApp />
   </div>
 </template>

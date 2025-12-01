@@ -1,0 +1,118 @@
+{
+    "type": "FeatureCollection",
+    "name": "canete",
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "NOMB_DIST": "ASIA"
+            },
+            "geometry": null
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "NOMB_DIST": "IMPERIAL"
+            },
+            "geometry": null
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "NOMB_DIST": "NUEVO IMPERIAL"
+            },
+            "geometry": null
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "NOMB_DIST": "SAN VICENTE DE CAÑETE"
+            },
+            "geometry": null
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "NOMB_DIST": "MALA"
+            },
+            "geometry": null
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "NOMB_DIST": "SAN ANTONIO"
+            },
+            "geometry": null
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "NOMB_DIST": "CALANGO"
+            },
+            "geometry": null
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "NOMB_DIST": "COAYLLO"
+            },
+            "geometry": null
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "NOMB_DIST": "CHILCA"
+            },
+            "geometry": null
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "NOMB_DIST": "SANTA CRUZ DE FLORES"
+            },
+            "geometry": null
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "NOMB_DIST": "LUNAHUANÁ"
+            },
+            "geometry": null
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "NOMB_DIST": "PACARÁN"
+            },
+            "geometry": null
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "NOMB_DIST": "ZÚÑIGA"
+            },
+            "geometry": null
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "NOMB_DIST": "QUILMANÁ"
+            },
+            "geometry": null
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "NOMB_DIST": "SAN LUIS"
+            },
+            "geometry": null
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "NOMB_DIST": "CERRO AZUL"
+            },
+            "geometry": null
+        }
+    ]
+}

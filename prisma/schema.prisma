@@ -8,22 +8,29 @@ datasource db {
 }
 
 model User {
-  id          Int         @id @default(autoincrement())
-  name        String
-  email       String      @unique
-  password    String?
-  phoneNumber String?
-  avatarUrl   String?
-  isActive    Boolean     @default(true)
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
-  roleId      Int
-  addresses   Address[]   @relation("UserAddresses")
-  favorites   Favorites[]
-  projects    Project[]
-  reviews     Review[]
-  role        Role        @relation(fields: [roleId], references: [id])
-  visits      Visit[]
+  id             Int                   @id @default(autoincrement())
+  name           String
+  email          String                @unique
+  password       String?
+  phoneNumber    String?
+  avatarUrl      String?
+  isActive       Boolean               @default(true)
+  createdAt      DateTime              @default(now())
+  updatedAt      DateTime              @updatedAt
+  roleId         Int
+  addresses      Address[]             @relation("UserAddresses")
+  favorites      Favorites[]
+  projects       Project[]
+  reviews        Review[]
+  role           Role                  @relation(fields: [roleId], references: [id])
+  visits         Visit[]
+  // Nuevas relaciones
+  garbageReports GarbageReport[]
+  trafficEvents  TrafficEvent[]
+  incidents      Incident[]
+  photos         Photo[]
+  statusHistory  ReportStatusHistory[]
+  measurements   Measurement[]
 }
 
 model Role {
@@ -110,8 +117,246 @@ model Visit {
   user      User?    @relation(fields: [userId], references: [id])
 }
 
+// Nuevos modelos para el sistema de reportes
+
+model District {
+  id             Int             @id @default(autoincrement())
+  name           String          @unique
+  code           String          @unique
+  description    String?
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  locations      Location[]
+  garbageReports GarbageReport[]
+  trafficEvents  TrafficEvent[]
+  incidents      Incident[]
+}
+
+model Location {
+  id             Int             @id @default(autoincrement())
+  name           String
+  latitude       Float
+  longitude      Float
+  address        String?
+  districtId     Int
+  district       District        @relation(fields: [districtId], references: [id])
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  // Relaciones
+  garbageReports GarbageReport[]
+  trafficEvents  TrafficEvent[]
+  incidents      Incident[]
+  measurements   Measurement[]
+}
+
+model Measurement {
+  id         Int             @id @default(autoincrement())
+  type       MeasurementType
+  value      Float
+  unit       String
+  recordedAt DateTime        @default(now())
+  locationId Int
+  location   Location        @relation(fields: [locationId], references: [id])
+  userId     Int
+  user       User            @relation(fields: [userId], references: [id])
+  createdAt  DateTime        @default(now())
+}
+
+model GarbageReport {
+  id            Int                   @id @default(autoincrement())
+  title         String
+  description   String
+  type          GarbageType
+  severity      SeverityLevel         @default(LOW)
+  status        ReportStatus          @default(PENDING)
+  latitude      Float?
+  longitude     Float?
+  address       String?
+  districtId    Int
+  locationId    Int?
+  userId        Int
+  district      District              @relation(fields: [districtId], references: [id])
+  location      Location?             @relation(fields: [locationId], references: [id])
+  user          User                  @relation(fields: [userId], references: [id])
+  photos        Photo[]
+  statusHistory ReportStatusHistory[]
+  createdAt     DateTime              @default(now())
+  updatedAt     DateTime              @updatedAt
+}
+
+model TrafficEvent {
+  id            Int                   @id @default(autoincrement())
+  title         String
+  description   String
+  type          TrafficEventType
+  severity      SeverityLevel         @default(MEDIUM)
+  status        ReportStatus          @default(PENDING)
+  latitude      Float?
+  longitude     Float?
+  address       String?
+  districtId    Int
+  locationId    Int?
+  userId        Int
+  district      District              @relation(fields: [districtId], references: [id])
+  location      Location?             @relation(fields: [locationId], references: [id])
+  user          User                  @relation(fields: [userId], references: [id])
+  photos        Photo[]
+  statusHistory ReportStatusHistory[]
+  createdAt     DateTime              @default(now())
+  updatedAt     DateTime              @updatedAt
+}
+
+model Incident {
+  id            Int                   @id @default(autoincrement())
+  title         String
+  description   String
+  type          IncidentType
+  severity      SeverityLevel         @default(MEDIUM)
+  status        ReportStatus          @default(PENDING)
+  latitude      Float?
+  longitude     Float?
+  address       String?
+  districtId    Int
+  locationId    Int?
+  userId        Int
+  district      District              @relation(fields: [districtId], references: [id])
+  location      Location?             @relation(fields: [locationId], references: [id])
+  user          User                  @relation(fields: [userId], references: [id])
+  photos        Photo[]
+  link          String?
+  statusHistory ReportStatusHistory[]
+  createdAt     DateTime              @default(now())
+  updatedAt     DateTime              @updatedAt
+}
+
+model Photo {
+  id              Int            @id @default(autoincrement())
+  url             String
+  caption         String?
+  type            PhotoType
+  garbageReportId Int?
+  trafficEventId  Int?
+  incidentId      Int?
+  userId          Int
+  garbageReport   GarbageReport? @relation(fields: [garbageReportId], references: [id])
+  trafficEvent    TrafficEvent?  @relation(fields: [trafficEventId], references: [id])
+  incident        Incident?      @relation(fields: [incidentId], references: [id])
+  user            User           @relation(fields: [userId], references: [id])
+  createdAt       DateTime       @default(now())
+}
+
+model ReportStatusHistory {
+  id              Int            @id @default(autoincrement())
+  status          ReportStatus
+  notes           String?
+  garbageReportId Int?
+  trafficEventId  Int?
+  incidentId      Int?
+  userId          Int
+  garbageReport   GarbageReport? @relation(fields: [garbageReportId], references: [id])
+  trafficEvent    TrafficEvent?  @relation(fields: [trafficEventId], references: [id])
+  incident        Incident?      @relation(fields: [incidentId], references: [id])
+  user            User           @relation(fields: [userId], references: [id])
+  createdAt       DateTime       @default(now())
+}
+
+model DashboardStats {
+  id         Int         @id @default(autoincrement())
+  type       StatsType
+  period     StatsPeriod
+  value      Float
+  data       Json?
+  recordedAt DateTime    @default(now())
+  createdAt  DateTime    @default(now())
+}
+
+// Enums para los nuevos modelos
+
 enum ProjectStatus {
   COMPLETED
   IN_PROGRESS
   PAUSED
+}
+
+enum MeasurementType {
+  AIR_QUALITY
+  NOISE_LEVEL
+  TEMPERATURE
+  HUMIDITY
+  TRAFFIC_FLOW
+}
+
+enum GarbageType {
+  ORGANIC
+  PLASTIC
+  PAPER
+  GLASS
+  METAL
+  ELECTRONIC
+  CONSTRUCTION
+  HAZARDOUS
+  OTHER
+}
+
+enum TrafficEventType {
+  ACCIDENT
+  CONGESTION
+  ROAD_CLOSURE
+  CONSTRUCTION
+  POLICE_CONTROL
+  PUBLIC_EVENT
+  WEATHER_HAZARD
+  OTHER
+}
+
+enum IncidentType {
+  VANDALISM
+  THEFT
+  ASSAULT
+  PUBLIC_DISTURBANCE
+  INFRASTRUCTURE_ISSUE
+  ENVIRONMENTAL_HAZARD
+  PUBLIC_HEALTH
+  OTHER
+}
+
+enum SeverityLevel {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+enum ReportStatus {
+  PENDING
+  IN_REVIEW
+  IN_PROGRESS
+  RESOLVED
+  REJECTED
+  CLOSED
+}
+
+enum PhotoType {
+  EVIDENCE
+  BEFORE
+  AFTER
+  DOCUMENT
+  OTHER
+}
+
+enum StatsType {
+  GARBAGE_REPORTS
+  TRAFFIC_EVENTS
+  INCIDENTS
+  MEASUREMENTS
+  USER_ACTIVITY
+  SYSTEM_METRICS
+}
+
+enum StatsPeriod {
+  HOURLY
+  DAILY
+  WEEKLY
+  MONTHLY
+  YEARLY
 }

@@ -9,74 +9,24 @@ import * as promotionController from "../controller/promotion";
 
 import * as dashboardController from "../controller/dashboard";
 import * as visitController from "../controller/visit";
-import * as reviewController from "../controller/review";
+import * as reviewController from "../controller/garbageReport";
+import * as incidentController from "../controller/incidentReport";
+
 import { createRouter, defineEventHandler } from 'h3';
 const router = createRouter();
 
-router.get('/allReviews', defineEventHandler(reviewController.allReviews));
-router.post('/addReviews', defineEventHandler(reviewController.addReviews));
-router.get('/getReviewByProductId/:id', defineEventHandler(reviewController.getReviewByProductId));
-router.put('/updateReviews/:id', defineEventHandler(reviewController.updateReviews));
-router.delete('/deleteReviews/:id', defineEventHandler(reviewController.deleteReviews));
+router.get('/getAllGarbageReport', defineEventHandler(reviewController.getAllGarbageReport));
+router.get('/getAllGarbageReportPhotos', defineEventHandler(reviewController.getAllGarbageReportPhotos));
+
+router.post('/addGarbageReport', defineEventHandler(reviewController.addGarbageReport));
 
 
-// 📦 PRODUCTOS
-router.post('/addProduct', defineEventHandler(productController.addProject));
-router.get('/product/paginated', defineEventHandler(productController.paginatedProducts));
+router.get('/getAllIncidentReport', defineEventHandler(incidentController.getAllIncidentReport));
 
-router.get('/product', defineEventHandler(productController.allProject));
-router.get('/product/:id', defineEventHandler(productController.productById));
-router.put('/updateProduct/:id', defineEventHandler(productController.updateProject));
-router.delete('/deleteProduct/:id', defineEventHandler(productController.deleteProduct));
-router.get('/productByCategoryId/:id', defineEventHandler(productController.productByCategoryId));
-router.get('/productByCategoryIdCount/:id', defineEventHandler(categoryController.productByCategoryIdCount));
-
-
-// 📦 ÓRDENES
-router.get('/orders/', defineEventHandler(orderController.getAllOrders));
-router.post('/addOrder', defineEventHandler(orderController.addOrder));
-router.post('/addWhatsAppOrder', defineEventHandler(orderController.addWhatsAppOrder));
-router.get('/orders/:id', defineEventHandler(orderController.getOrderById));
-router.get('/ordersByUser/:id', defineEventHandler(orderController.getOrdersByUser));
-// Obtener estadísticas de órdenes
-router.get('/orders/stats', defineEventHandler(orderController.getOrderStats));
-
-// ❤️ FAVORITOS
-router.post('/addlike', defineEventHandler(favoritesController.addLike));
-router.get('/allfavorites', defineEventHandler(favoritesController.allFavorites));
-
-
-// 🗂️ CATEGORÍAS
-router.get('/category', defineEventHandler(categoryController.allCategory));
-router.get('/categoryById/:id', defineEventHandler(categoryController.categoryById));
-router.post('/addCategory', defineEventHandler(categoryController.addCategory));
-router.put('/updateCategory/:id', defineEventHandler(categoryController.updateCategory));
-router.delete('/deleteCategory/:id', defineEventHandler(categoryController.deleteCategory));
-router.get('/personalizedCategory', defineEventHandler(categoryController.personalizedCategory));
-
-// 👤 USUARIOS
-router.get('/allUser', defineEventHandler(userController.allUser));
-router.get('/userById/:id', defineEventHandler(userController.userById));
-router.post('/addUser', defineEventHandler(userController.addUser));
-router.put('/updateUser/:id', defineEventHandler(userController.updateUser));
-router.put('/updateUserAvatar/:id', defineEventHandler(userController.updateUserAvatar));
-router.put('/updateUserPhone/:id', defineEventHandler(userController.updateUserPhone));
-router.delete('/userDelete/:id', defineEventHandler(userController.deleteUser));
-
+router.post('/addIncidentReport', defineEventHandler(incidentController.addIncidentReport));
 
 // 🧩 ROLES
 router.get('/roles', defineEventHandler(roleController.allRole));
-
-
-// 💥 PROMOCIONES
-router.get('/promotions', defineEventHandler(promotionController.allActivePromotions));
-router.get('/promotions/:id', defineEventHandler(promotionController.promotionById));
-router.post('/promotions', defineEventHandler(promotionController.addPromotion));
-router.put('/promotions/:id', defineEventHandler(promotionController.updatePromotion));
-router.delete('/promotions/:id', defineEventHandler(promotionController.deletePromotion));
-router.get('/products/:id/promotions', defineEventHandler(promotionController.promotionsByProductId));
-router.get('/promotionactive', defineEventHandler(promotionController.allActivePromotions2));
-
 // 👤 User Routes (admin)
 router.get('/users/clients', defineEventHandler(userController.getClients));
 
@@ -88,5 +38,15 @@ router.get('/dashboardReport', defineEventHandler(dashboardController.dashboardR
 router.get('/getVisits', defineEventHandler(visitController.getVisits));
 router.post('/addVisit', defineEventHandler(visitController.addVisit));
 router.get('/getVisitStats', defineEventHandler(visitController.getVisitStats));
+
+// 👤 USUARIOS
+router.get('/allUser', defineEventHandler(userController.allUser));
+router.get('/userById/:id', defineEventHandler(userController.userById));
+router.post('/addUser', defineEventHandler(userController.addUser));
+router.put('/updateUser/:id', defineEventHandler(userController.updateUser));
+router.put('/updateUserAvatar/:id', defineEventHandler(userController.updateUserAvatar));
+router.put('/updateUserPhone/:id', defineEventHandler(userController.updateUserPhone));
+router.delete('/userDelete/:id', defineEventHandler(userController.deleteUser));
+
 
 export default useBase("/api/v1", router.handler);
