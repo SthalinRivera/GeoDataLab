@@ -1,4 +1,4 @@
-// server/middleware/log.ts
+
 import { defineEventHandler, getRequestURL } from 'h3';
 
 export default defineEventHandler((event) => {
