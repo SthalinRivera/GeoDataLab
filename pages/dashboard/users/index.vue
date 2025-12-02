@@ -18,7 +18,7 @@
 
         <!-- Loading State -->
         <div v-if="loading">
-            <SkeletonTableUsers />
+            cargando
         </div>
 
         <!-- Users Table -->
@@ -315,7 +315,6 @@
 
 <script setup lang="ts">
 import { ref, reactive, onMounted, nextTick } from 'vue';
-import SkeletonTableUsers from '~/components/UI/Skeleton/SkeletonTableUsers.vue';
 
 interface User {
     id: number;
@@ -548,4 +547,4 @@ button {
 .shadow-xl {
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
-</style>    
+</style>
