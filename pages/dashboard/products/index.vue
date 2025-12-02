@@ -28,7 +28,7 @@
 
         <!-- Loading State -->
         <div v-if="loading">
-            <SkeletonTableProducts />
+
         </div>
 
         <!-- Error State -->

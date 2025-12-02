@@ -40,7 +40,7 @@
         </div>
         <!-- Loading State -->
         <div v-if="loading">
-            <SketonTableCategories></SketonTableCategories>
+            cargando
         </div>
         <!-- Estado de Error -->
         <div v-else-if="error"
@@ -50,7 +50,7 @@
                 <div>
                     <h3 class="font-medium text-red-800 dark:text-red-200">Error al cargar categorías</h3>
                     <p class="text-sm text-red-600 dark:text-red-300">{{ error.message || 'Ocurrió un error desconocido'
-                        }}</p>
+                    }}</p>
                 </div>
             </div>
         </div>
@@ -352,7 +352,7 @@
 import { ref, reactive, watch, computed, onMounted, nextTick } from 'vue';
 import { useRoute } from "vue-router";
 import * as XLSX from 'xlsx';
-import SketonTableCategories from '~/components/UI/Skeleton/SketonTableCategories.vue';
+
 import { useFirebaseUpload } from '~/composables/useFirebaseUpload';
 
 const { $toast } = useNuxtApp();
