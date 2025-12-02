@@ -29,7 +29,7 @@
 </template>
 
 <script setup lang="ts">
-import Services from './Servicios/Services.vue'
+
 </script>
 
 <style scoped></style>
